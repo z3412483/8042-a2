@@ -1,5 +1,6 @@
 # This is the default target, which will be built when 
 # you invoke make
+CC := gcc
 OUTPUTFILE=hello
 INSTALLDIR=binaries
 CFLAGS = -Wall
