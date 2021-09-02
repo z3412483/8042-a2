@@ -4,16 +4,19 @@ CC := gcc
 OUTPUTFILE=count_letter_from_file
 INSTALLDIR=binaries
 CFLAGS = -Wall
+LIBS = `pkg-config --libs gtk+-3.0`
+
+PACKAGE = `pkg-config --cflags --libs gtk+-3.0`
 
 .PHONY: all
 all: $(OUTPUTFILE)
 
 # Build hello from hello.cpp
 $(OUTPUTFILE): count.o
-	${CC} ${CFLAGS} count.o -o $(OUTPUTFILE)
+	${CC} ${CFLAGS} count.o -o $(OUTPUTFILE) $(LIBS)
 
 count.o:
-	${CC} ${CFLAGS} -c count.c -o count.o
+	${CC} ${CFLAGS} -c count.c -o count.o $(PACKAGE)
 
 # This rule tells make to copy hello to the binaries subdirectory,
 # creating it if necessary
