@@ -1,0 +1,3 @@
+Need to install mingw-w64 to build .c programs for windows environments.
+
+Run i686-w64-mingw32-gcc -o <output.exe> <source.c> for win 32 programs.
