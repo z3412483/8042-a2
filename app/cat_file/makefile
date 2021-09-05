@@ -1,7 +1,7 @@
 # This is the default target, which will be built when 
 # you invoke make
 CC := gcc
-OUTPUTFILE=count_file
+OUTPUTFILE=cat_file
 INSTALLDIR=binaries
 CFLAGS = -Wall
 LIBS = `pkg-config --libs gtk+-3.0`
@@ -12,21 +12,21 @@ PACKAGE = `pkg-config --cflags --libs gtk+-3.0`
 all: $(OUTPUTFILE)
 
 # Build hello from hello.cpp
-$(OUTPUTFILE): count.o
-	${CC} ${CFLAGS} count.o -o $(OUTPUTFILE) $(LIBS)
+$(OUTPUTFILE): cat_file.o
+	${CC} ${CFLAGS} cat_file.o -o $(OUTPUTFILE) $(LIBS)
 
 count.o:
-	${CC} ${CFLAGS} -c count.c -o count.o $(PACKAGE)
+	${CC} ${CFLAGS} -c cat_file.c -o cat_file.o $(PACKAGE)
 
 # This rule tells make to copy hello to the binaries subdirectory,
 # creating it if necessary
 .PHONY: install
 install:
 	mkdir -p binaries
-	cp -p count binaries
+	cp -p cat_file binaries
 
 # This rule tells make to delete hello and hello.o
 .PHONY: clean 
 clean:
-	rm -f count_file
-	rm -f count.o	
+	rm -f cat_file
+	rm -f cat_file.o	
