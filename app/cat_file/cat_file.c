@@ -9,7 +9,7 @@ void drop_newline(char *in_string)
 
 void cat_file() 
 {
-    char ch, file_name[25], file_line[100], line[10000];
+    char ch, file_name[25], file_contents[1000];
     FILE *fp;
     int count = 0;
 
@@ -24,12 +24,16 @@ void cat_file()
         exit(EXIT_FAILURE);
     }
 
-    printf("The contents of %s file are:\n", file_name);
-    while(fgets(*line, sizeof(line), fp)){
-        strcpy(file_line, *line);
-        printf("%s", line);
-    }
-    
+
+    fseek(fp, 0, SEEK_END);
+    long fsize = ftell(fp);
+    fseek(fp, 0, SEEK_SET);  /* same as rewind(f); */
+
+    printf("File Length: '%d'.\n", fsize);
+    printf("Contents:\n");
+
+    fread(file_contents, 1, fsize, fp);
+    printf("%s", file_contents);
     // while((ch = fgetc(fp)) != EOF)
     //     printf("%c", ch);
 
@@ -38,7 +42,7 @@ void cat_file()
 
 int main(int argc, char *argv[]) {
     cat_file();
-    printf("\n-----\nPress Any Key to Close\n");  
+    printf("\n-----\nPress Enter Key to Close\n");  
     getchar();
     return 0;
 }
