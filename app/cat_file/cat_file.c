@@ -9,7 +9,7 @@ void drop_newline(char *in_string)
 
 void cat_file() 
 {
-    char ch, file_name[25], str[10];
+    char ch, file_name[25], file_line[100], line[10000];
     FILE *fp;
     int count = 0;
 
@@ -25,14 +25,20 @@ void cat_file()
     }
 
     printf("The contents of %s file are:\n", file_name);
-
-    while((ch = fgetc(fp)) != EOF)
-        printf("%c", ch);
+    while(fgets(*line, sizeof(line), fp)){
+        strcpy(file_line, *line);
+        printf("%s", line);
+    }
+    
+    // while((ch = fgetc(fp)) != EOF)
+    //     printf("%c", ch);
 
     fclose(fp);
 }
 
 int main(int argc, char *argv[]) {
     cat_file();
+    printf("\n-----\nPress Any Key to Close\n");  
+    getchar();
     return 0;
 }
