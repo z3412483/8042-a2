@@ -7,9 +7,16 @@ void drop_newline(char *in_string)
     in_string[strcspn(in_string, "\n")] = 0;
 }
 
+void print_file(char *file) {
+    char out[1000];
+    strcpy(out, file);
+    printf("%s", out);
+}
+
 void cat_file() 
 {
-    char ch, file_name[25], file_contents[1000];
+    char ch, file_name[25];
+    char *file_contents = NULL;
     FILE *fp;
     int count = 0;
 
@@ -27,13 +34,17 @@ void cat_file()
 
     fseek(fp, 0, SEEK_END);
     long fsize = ftell(fp);
+    if (fsize == -1) { /* Error */ }
+
+    /* Allocate our buffer to that size. */
+    file_contents = malloc(sizeof(char) * (fsize + 1));
     fseek(fp, 0, SEEK_SET);  /* same as rewind(f); */
 
-    printf("File Length: '%d'.\n", fsize);
+    printf("File Length: '%ld'.\n", fsize);
     printf("Contents:\n");
 
-    fread(file_contents, 1, fsize, fp);
-    printf("%s", file_contents);
+    fread(file_contents, sizeof(char), fsize, fp);
+    print_file(file_contents);
     // while((ch = fgetc(fp)) != EOF)
     //     printf("%c", ch);
 

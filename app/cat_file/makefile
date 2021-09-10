@@ -6,7 +6,7 @@ INSTALLDIR=binaries
 CFLAGS = -Wall
 LIBS = `pkg-config --libs gtk+-3.0`
 
-PACKAGE = `pkg-config --cflags --libs gtk+-3.0`
+#PACKAGE = `pkg-config --cflags --libs gtk+-3.0`
 
 .PHONY: all
 all: $(OUTPUTFILE)
@@ -16,7 +16,8 @@ $(OUTPUTFILE): cat_file.o
 	${CC} ${CFLAGS} cat_file.o -o $(OUTPUTFILE) $(LIBS)
 
 count.o:
-	${CC} ${CFLAGS} -c cat_file.c -o cat_file.o $(PACKAGE)
+	#${CC} ${CFLAGS} -c cat_file.c -o cat_file.o $(PACKAGE)
+	${CC} ${CFLAGS} -c cat_file.c -o cat_file.o
 
 # This rule tells make to copy hello to the binaries subdirectory,
 # creating it if necessary
