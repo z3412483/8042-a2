@@ -7,10 +7,11 @@ void drop_newline(char *in_string)
     in_string[strcspn(in_string, "\n")] = 0;
 }
 
-void print_file(char *file) {
+int print_file(char *file) {
     char out[1000];
     strcpy(out, file);
     printf("%s", out);
+    return 1;
 }
 
 void cat_file() 
@@ -43,7 +44,7 @@ void cat_file()
     printf("Contents:\n");
 
     fread(file_contents, sizeof(char), fsize, fp);
-    print_file(file_contents);
+    int result = print_file(file_contents);
     // while((ch = fgetc(fp)) != EOF)
     //     printf("%c", ch);
 
