@@ -7,11 +7,10 @@ void drop_newline(char *in_string)
     in_string[strcspn(in_string, "\n")] = 0;
 }
 
-int print_file(char *file) {
+void print_file(char *file) {
     char out[1000];
     strcpy(out, file);
     printf("%s", out);
-    return 1;
 }
 
 void cat_file() 
@@ -19,6 +18,7 @@ void cat_file()
     char file_name[25];
     char *file_contents = NULL;
     FILE *fp;
+    long fsize;
 
     printf("Enter name of a file you wish to see\n");
     gets(file_name);
@@ -33,7 +33,7 @@ void cat_file()
 
 
     fseek(fp, 0, SEEK_END);
-    long fsize = ftell(fp);
+    fsize = ftell(fp);
     if (fsize == -1) { /* Error */ }
 
     /* Allocate our buffer to that size. */
@@ -44,7 +44,7 @@ void cat_file()
     printf("Contents:\n");
 
     fread(file_contents, sizeof(char), fsize, fp);
-    int result = print_file(file_contents);
+    print_file(file_contents);
     // while((ch = fgetc(fp)) != EOF)
     //     printf("%c", ch);
 
@@ -57,3 +57,6 @@ int main(int argc, char *argv[]) {
     getchar();
     return 0;
 }
+
+
+// i686-w64-mingw32-gcc-win32 -o cat_file.exe  cat_file.c
