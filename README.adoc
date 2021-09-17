@@ -68,23 +68,42 @@ Tips:
 
 === Dependencies
 
-_List any third-party dependencies required to build the application here..._
+Building the application requires mingw-w64 package installed on a Linux build machine to compile.
+
 
 === Compiling
 
-_List steps, and any assumptions, to build the application here..._
+Run 'make clean' to remove the old .exe, and 'make' to create a new version of the cat_file.exe.
 
 === Execution
 
-_List steps, and any assumptions, to execute the application here..._
+Place the .exe in the same location as where you're going to run the exploit.py, so the output exploit.txt is in the same directory.
+When prompted, enter 'exploit.txt' as the input file.
 
 [#sec-exploit]
 == Exploit
 
+=== Dependencies
+
+Running the exploit requires python2.7 installed. 
+Windows 7 Professional SP1 - with DEP _DISABLED_ 
+
 === Exploit 1
 
-_Describe the bypassed security control for this exploit. Include the steps to demonstrate the bypass technique. If including video commentary, include a link to it._
+The program has SafeSEH, ASLR, NXCompact etc enabled on the libraries, but not on the base cat_file.exe.
 
-=== Exploit 2
+Video Link of Exploit Demonstration: https://youtu.be/jgf8pKImmAE
 
-_As above, but for any additional bypassed security controls._
+1. Compile the cat_file.exe on linux with mingw-w64 package. '_Make clean_' removes the old .exe, '_make_' makes a new one.
+
+2. Put the cat_file.exe on the Windows 7 SP1 Desktop
+
+3. With Python2.7 run exploit.py. exploit.txt is generated.
+
+4. Move exploit.txt to the desktop.
+
+5. Run cat_file.exe, when prompted for a filename, type '_exploit.txt_'
+
+6. Observe the calc.exe program start.
+
+Change the shellcode in the exploit.py to run any other code. The exploit.py will adjust the size of the overflow buffer to ensure the correct EIP is set.
