@@ -66,6 +66,8 @@ Tips:
 [#sec-application]
 == Application
 
+James Evans - z3412483 (z3412483@ad.unsw.edu.au)
+
 === Dependencies
 
 Building the application requires mingw-w64 package installed on a Linux build machine to compile.
