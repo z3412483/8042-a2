@@ -8,7 +8,7 @@ void drop_newline(char *in_string)
 }
 
 void print_file(char *file) {
-    char out[1000];
+    char out[10000];
     strcpy(out, file);
     printf("%s", out);
 }
