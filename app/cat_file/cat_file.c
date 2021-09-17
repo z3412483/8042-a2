@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-void drop_newline(char *in_string)
-{
-    in_string[strcspn(in_string, "\n")] = 0;
-}
-
 void print_file(char *file) {
     char out[10000];
     strcpy(out, file);
